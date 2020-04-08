@@ -9,7 +9,7 @@ import { AcessoComponent } from './acesso/acesso.component';
 import { BannerComponent } from './acesso/banner/banner.component';
 import { CadastroComponent } from './acesso/cadastro/cadastro.component';
 import { LoginComponent } from './acesso/login/login.component';
-import { from } from 'rxjs';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,7 @@ import { from } from 'rxjs';
     BrowserAnimationsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
