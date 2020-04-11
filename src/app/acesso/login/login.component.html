@@ -2,26 +2,42 @@
   <div class="card-body">
     <div class="card-title"></div>
 
-    <!-- <form> -->
+    <form [formGroup]="formulario" (ngSubmit)="autenticar()">
       <div class="form-group">
         <input
           type="email"
           class="form-control"
           placeholder="E-mail"
+          formControlName="email"
+          required
         >
       </div>
+
+      <mat-error class="small text-danger text-center"
+      *ngIf="!formulario.get('email').valid && formulario.get('email').touched">
+      {{getErrorMessage(formulario.get('email'))}}
+      </mat-error>
+
       <div class="form-group">
         <input
           type="password"
           class="form-control"
           placeholder="Senha"
+          formControlName="senha"
+          required
         >
       </div>
-      <button type="submit" class="btn btn-primary btn-sm btn-block">Entrar</button>
-    <!-- </form> -->
+
+      <mat-error class="small text-danger text-center"
+      *ngIf="!formulario.get('senha').valid && formulario.get('senha').touched">
+      {{getErrorMessage(formulario.get('senha'))}}
+      </mat-error>
+
+      <button [disabled]="formulario.invalid ? true: false" type="submit" class="btn btn-primary btn-sm btn-block">Entrar</button>
+    </form>
     <hr />
 
-    <p class="small text-danger text-center">O nome de usuário inserido não pertence a uma conta. Verifique seu nome de usuário e tente novamente.</p>
+    <p *ngIf="resposta" class="small text-danger text-center">{{ resposta }}</p>
 
   </div>
 </div>

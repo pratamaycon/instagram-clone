@@ -8,34 +8,65 @@
         type="email"
         class="form-control"
         placeholder="E-mail"
-        formControlName="email" />
+        formControlName="email"
+        required/>
       </div>
+
+      <mat-error class="small text-danger text-center"
+      *ngIf="!formulario.get('email').valid && formulario.get('email').touched">
+      {{getErrorMessage(formulario.get('email'))}}
+      </mat-error>
+
       <div class="form-group">
         <input
         type="text"
         class="form-control"
         placeholder="Nome completo"
-        formControlName="nome_completo" />
+        formControlName="nome_completo"
+        required />
       </div>
+
+      <mat-error class="small text-danger text-center"
+      *ngIf="!formulario.get('nome_completo').valid && formulario.get('nome_completo').touched">
+      {{getErrorMessage(formulario.get('nome_completo'))}}
+      </mat-error>
+
       <div class="form-group">
         <input
         type="text"
         class="form-control"
         placeholder="Nome de usuário"
-        formControlName="nome_usuario" />
+        formControlName="nome_usuario"
+        required />
       </div>
+
+      <mat-error class="small text-danger text-center"
+      *ngIf="!formulario.get('nome_usuario').valid && formulario.get('nome_usuario').touched">
+      {{getErrorMessage(formulario.get('nome_completo'))}}
+      </mat-error>
+
       <div class="form-group">
         <input
         type="password"
         class="form-control"
         placeholder="Senha"
-        formControlName="senha" />
+        formControlName="senha"
+        required />
       </div>
-      <button type="submit" class="btn btn-primary btn-sm btn-block">
+
+      <mat-error class="small text-danger text-center"
+      *ngIf="!formulario.get('senha').valid && formulario.get('senha').touched">
+      {{getErrorMessage(formulario.get('senha'))}}
+      </mat-error>
+
+      <button [disabled]="formulario.invalid ? true: false" type="submit" class="btn btn-primary btn-sm btn-block">
         Cadastre-se
       </button>
     </form>
     <hr />
+
+    <p [@animation-error]="erroPainel"
+    *ngIf="resposta" class="small text-danger text-center">{{ resposta  }}</p>
 
     <p class="small text-center">
       Ao cadastrar-se, você concorda com nossos <b>Termos</b> e
