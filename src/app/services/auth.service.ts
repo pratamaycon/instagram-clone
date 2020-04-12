@@ -8,6 +8,7 @@ import * as firebase from 'firebase';
 export class AuthService {
 
   public error = '';
+  public tokenId: string;
 
   constructor() { }
 
@@ -31,7 +32,11 @@ export class AuthService {
 
     return firebase.auth().signInWithEmailAndPassword(email, senha)
     .then((resposta: any) => {
-      console.log(resposta);
+      firebase.auth().currentUser.getIdToken()
+        .then( (idToken: string) => {
+          this.tokenId = idToken;
+          console.log(this.tokenId);
+        });
     })
     .catch((error: Error) => this.error = error.message);
   }
