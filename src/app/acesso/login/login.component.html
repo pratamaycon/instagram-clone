@@ -37,7 +37,8 @@
     </form>
     <hr />
 
-    <p *ngIf="resposta" class="small text-danger text-center">{{ resposta }}</p>
+    <p [@animation-error]="erroPainel"
+    *ngIf="resposta" class="small text-danger text-center">{{ resposta }}</p>
 
   </div>
 </div>

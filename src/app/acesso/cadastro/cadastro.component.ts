@@ -73,8 +73,9 @@ export class CadastroComponent implements DoCheck {
     );
     this.authService.cadastrarUsuario(usuario)
       .then( () => {
-        this.resposta = this.authService.error;
-        if (!this.resposta) {
+        if (this.authService.error) {
+          this.resposta = this.authService.error;
+        } else {
           this.exibirPainelLogin();
         }
       });

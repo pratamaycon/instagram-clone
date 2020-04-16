@@ -1,3 +1,4 @@
+import { GrudService } from 'src/app/services/grud.service';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -16,6 +17,10 @@ import { HomeComponent } from './home/home.component';
 import { PublicacoesComponent } from './home/publicacoes/publicacoes.component';
 
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { AuthGuard } from './guard/auth.guard';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
+import { IncluirPublicacaoComponent } from './home/incluir-publicacao/incluir-publicacao.component';
+import { ProgressoService } from './services/progresso.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +30,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     CadastroComponent,
     LoginComponent,
     HomeComponent,
-    PublicacoesComponent
+    PublicacoesComponent,
+    PaginaNaoEncontradaComponent,
+    IncluirPublicacaoComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +41,12 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     RouterModule.forRoot(ROUTES),
     MatFormFieldModule
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    AuthGuard,
+    GrudService,
+    ProgressoService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
